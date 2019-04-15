@@ -1,0 +1,39 @@
+.container {
+    margin: 0 auto;
+    text-align: center;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100%;
+    margin-top: 120px;
+    font-family: Comic Sans MS;
+    text-align: center;
+    background: url("backgroung.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+h1, p, label {
+    color: whitesmoke;
+}
+
+label, input {
+    display: inline-block;
+}
+
+#errorMessage {
+    color: red;
+    font-size: 200% !Important;
+    margin-top: 20px;
+}
+
+#successMessage {
+    color: green;
+    font-size: 200% !Important;
+    display: none;
+    margin-top: 20px;
+}

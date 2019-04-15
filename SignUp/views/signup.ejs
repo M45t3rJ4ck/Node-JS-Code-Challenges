@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <link href="../assets/styles.css" rel="stylesheet" type="text/css"/>
+
+  </head>
+
+  <body>
+
+    <h1>Sign Up With Us</h1>
+
+      <p>Please complete your contact details for us should we require any further information</p>
+
+      <form id="contactForm" class="container" method="POST" action="/signup">
+
+        <label for="firstName">What is your first name?</label>
+        <input type="text" name="firstName" value="<%= qs.firstName %>" />
+
+        <label for="lastName">What is your last name?</label>
+        <input type="text" name="lastName" value="<%= qs.lastName %>" />
+
+        <label for="age">What is your age?</label>
+        <input type="text" name="age" value="<%= qs.age %>" />
+
+        <label for="email">What email address should we use to contact you by?</label>
+        <input type="text" name="email" value="<%= qs.email %>" />
+
+        <label for="password">Pick a password, just for incase!</label>
+        <input type="text" name="password" value="<%= qs.password %>" />
+
+        <label for="confirmPassword">Reenter password please, just for incase!</label>
+        <input type="text" name="confirmPassword" value="<%= qs.confirmPassword %>" />
+
+        <input type="submit" class="submitButton" value="submit" />
+
+      </form>
+
+      <% include partial/nav.ejs %>
+
+  </body>
+
+</html>

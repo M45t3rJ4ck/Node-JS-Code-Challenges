@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <link href="../assets/styles.css" rel="stylesheet" type="text/css"/>
+
+  </head>
+
+  <body>
+
+    <h1>Sign Up Success</h1>
+
+      <p>Thank you for getting in touch with us!</p>
+      <p>You're signed up as <%= data.firstName %> <%= data.lastName %> at the tender age of <%= data.age %> years old.</p>
+      <p>We will be replying to <%= data.email %> shortly and don't forget to keep your passwords safe.</p>
+
+      <% include partial/nav.ejs %>
+
+  </body>
+
+</html>
