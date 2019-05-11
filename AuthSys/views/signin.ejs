@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        
+        <link href="../assets/styles.css" rel="stylesheet" type="text/css"/>
+
+    </head>
+
+    <body>
+
+        <% include partial/nav.ejs %>
+
+        <h1>Sign Up Success</h1>
+
+        <form id="signinForm" class="containerForm" method="POST" action="/signin">
+
+            <label for="firstName">What is your first name?</label>
+            <br/>
+            <input class="formInput" type="text" name="firstName" value="<%= login.firstName %>" />
+            <br/>
+            <label for="lastName">What is your last name?</label>
+            <br/>
+            <input class="formInput" type="text" name="lastName" value="<%= login.lastName %>" />
+            <br/>
+            <label for="age">What is your age?</label>
+            <br/>
+            <input class="formInput" type="text" name="age" value="<%= login.age %>" />
+            <br/>
+            <label for="password">What is your password please?</label>
+            <br/>
+            <input class="formInput" type="text" name="password" value="<%= login.password %>" />
+            <br/>
+            <input type="submit" class="submitButton" value="submit" />
+
+        </form>
+
+    </body>
+
+</html>

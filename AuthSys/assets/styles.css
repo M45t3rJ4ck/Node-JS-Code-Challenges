@@ -1,0 +1,28 @@
+.formInput {
+    width: 500px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+label .submitButton {
+    margin-top: 5px; 
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100%;
+    margin: 50px auto;
+    color: whitesmoke;
+    font-family: Comic Sans MS;
+    text-align: center;
+    background: url("backgroung.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+#mainNavbar {
+    list-style-type: none;
+}

@@ -1,0 +1,73 @@
+var express = require("express");
+var bodyParser = require("body-parser");
+var fs = require("fs");
+
+var app = express();
+
+var urlencodedParser = bodyParser.urlencoded({extended: false});
+
+var active = '';
+var activeUser = '';
+
+app.engine('ejs', require('ejs').renderFile);
+app.set("view engine", "ejs");
+
+app.use("/assets", express.static("assets"));
+
+app.get("/home", function(req, res){
+  res.render("index.ejs");
+});
+
+app.get("/signup", function(req, res){
+  res.render("signup.ejs", {
+    qs: req.query
+  });
+});
+
+app.post("/signup", urlencodedParser, function(req, res) {
+  var data = req.body;
+  var uuid = data.firstName[0] + data.age + data.lastName[0];
+  uuid = uuid.toLowerCase();
+  var user = fs.readFileSync('./userData.json')
+  var userj = JSON.parse(user);
+  userj = JSON.stringify(data, null, 4);
+  fs.writeFileSync('./lib/' + uuid + '.json', (userj));
+  res.redirect("/signin");
+});
+
+app.get("/signin", function(req, res) {
+  res.render("signin.ejs", {
+    login: req.query
+  });
+});
+
+app.post("/signin", urlencodedParser, function(req, res) {
+  var data = req.body;
+  var uuid = data.firstName[0] + data.age + data.lastName[0];
+  uuid = uuid.toLowerCase();
+  active = uuid;
+  res.redirect("/profile");
+});
+
+app.get("/profile", function(req, res) {
+  var person = fs.readFileSync('./lib/' + active + '.json');
+  var perjson = JSON.parse(person);
+  activeUser = perjson;
+  res.render("profile.ejs", {
+    user: activeUser
+  });
+});
+
+app.post('/profile', urlencodedParser, function(req, res) {
+  var interest = req.body;
+  var interjest = JSON.parse(interest);
+  activeUser.hobbies = interjest;
+  console.log('7) ', activeUser);
+  res.render("profile.ejs", {
+    user: activeUser
+  });
+});
+
+app.listen(3000);
+
+console.log(">>Now listening on port 3000<<")
