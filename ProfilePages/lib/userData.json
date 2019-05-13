@@ -1,0 +1,10 @@
+{
+    "person": {
+        "firstName": "",
+        "lastName": "",
+        "age": "",
+        "email": "",
+        "password": "",
+        "confirmPassword": ""
+    }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <link href="../assets/styles.css" rel="stylesheet" type="text/css"/>
+
+  </head>
+
+  <body>
+
+    <% include partial/nav.ejs %>
+
+    <h1>Sign In Success</h1>
+
+      <p>Thank you for keeping in touch with us!</p>
+      <p>You're signed in as <%= user.firstName %> <%= user.lastName %> at the tender age of <%= user.age %> years old.</p>
+      <p>
+        You're current hobbie list includes: 
+        <span id="hobbies"><%= user.hobbies %></span>
+      </p>
+      <p>We will be replying to <%= user.email %> if any need to contact should araise.</p>
+      <p>Don't forget to keep your passwords safe.</p>
+
+      <form id="profileForm" class="containerForm" method="POST" action="/profile">
+
+        <label for="hobbies">By the way, do you have any hobbies perhaps?</label>
+        <br/>
+        <input class="formInput" type="text" name="hobbies" />
+        <br/>
+        <input type="submit" class="submitButton" value="submit" />
+
+      </form>
+
+  </body>
+
+</html>

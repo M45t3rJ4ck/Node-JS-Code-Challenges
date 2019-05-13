@@ -1,0 +1,16 @@
+{
+    "firstName": "",
+    "lastName": "",
+    "age": "",
+    "email": "",
+    "password": "",
+    "confirmPassword": ""
+},
+{
+    "firstName": "Ma",
+    "lastName": "Baker",
+    "age": "101",
+    "email": "ma@baker.usa",
+    "password": "MineyMouse",
+    "confirmPassword": "MineyMouse"
+}

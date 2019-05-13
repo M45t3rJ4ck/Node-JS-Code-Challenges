@@ -1,0 +1,84 @@
+var express = require("express");
+var bodyParser = require("body-parser");
+var fs = require("fs");
+
+var app = express();
+
+var urlencodedParser = bodyParser.urlencoded({extended: false});
+
+var active = '';
+var activeUser = {};
+
+app.engine('ejs', require('ejs').renderFile);
+app.set("view engine", "ejs");
+
+app.use("/assets", express.static("assets"));
+
+app.get("/home", function(req, res){
+  res.render("index.ejs");
+});
+
+app.get("/signup", function(req, res){
+  res.render("signup.ejs", {
+    qs: req.query
+  });
+});
+
+app.post("/signup", urlencodedParser, function(req, res) {
+  var data = req.body;
+  var uuid = data.firstName[0] + data.age + data.lastName[0];
+  uuid = uuid.toLowerCase();
+  var user = fs.readFileSync('./lib/userData.json')
+  var userj = JSON.parse(user);
+  userj = JSON.stringify(data, null, 4);
+  fs.writeFileSync('./lib/' + uuid + '.json', (userj));
+  res.redirect("/signin");
+});
+
+app.get("/signin", function(req, res) {
+  res.render("signin.ejs", {
+    login: req.query
+  });
+});
+
+app.post("/signin", urlencodedParser, function(req, res) {
+  var login = req.body;
+  var uuid = login.firstName[0] + login.age + login.lastName[0];
+  uuid = uuid.toLowerCase();
+  active = uuid;
+  activeUser = fs.readFileSync('./lib/' + active + '.json');
+  if (login.firstName === activeUser.firstName && login.lastName === activeUser && login.age === activeUser.age && login.password === activeUser.password) {
+    res.redirect("/profile");
+  } else {
+    console.log(">>Login Failed due to False Credentials<<");
+    res.redirect("/signup");
+  };
+});
+
+app.get("/profile", urlencodedParser, function(req, res) {
+  var person = fs.readFileSync('./lib/' + active + '.json');
+  var perjson = JSON.parse(person);
+  activeUser = perjson;
+  res.render("profile.ejs", {
+    user: activeUser
+  });
+});
+
+app.post('/profile', urlencodedParser, function(req, res) {
+  data = req.body;
+  activeUser.hobbies += JSON.stringify(data, null, 4);
+  fs.writeFileSync('./lib/' + active + '.json', JSON.stringify(activeUser, null, 4));
+  res.render("profile.ejs", {
+    user: activeUser
+  });
+});
+
+app.get("/signout", function(req, res) {
+  active = '';
+  activeUser = '';
+  res.redirect("/home");
+});
+
+app.listen(3000);
+
+console.log(">>Now listening on port 3000<<")

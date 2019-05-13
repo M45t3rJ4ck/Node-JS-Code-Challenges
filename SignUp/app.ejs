@@ -19,18 +19,16 @@ app.get("/signup", function(req, res){
   res.render("signup.ejs", {qs: req.query});
 });
 
-app.post("/signup", urlencodedParser, function(req, res){
-  res.render("signup-success.ejs", { data: req.body });
-  fs.readFile("./assets/data.json", "utf8", function(err, data){
-    if (err) {
-      console.log(err);
-    } else {
-      fs.appendFile('./assets/base.json', JSON.stringify(req.body) , 'utf8', function(err) {
-        if (err) {
-        console.log(err);
-        res.send(returnJson);
-      }});
-  }});
+app.post("/signup", urlencodedParser, function(req, res) {
+  var data = req.body;
+  console.log('>>Req Body: ', data);
+  var person = fs.readFileSync('userData.json')
+  var perjson = JSON.parse(person);
+  console.log('>>Perjson: ', perjson);
+  perjson = JSON.stringify(data, null, 4);
+  fs.appendFileSync('userData.json', (',\n' + perjson))
+  console.log('>>User Data Saved<<');
+  res.render("signup-success.ejs", { data });
 });
 
 app.listen(3000);

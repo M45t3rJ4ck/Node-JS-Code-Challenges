@@ -1,0 +1,9 @@
+{
+    "firstName": "Ma",
+    "lastName": "Baker",
+    "age": "101",
+    "email": "baker@ma.net",
+    "password": "MineyMouse",
+    "confirmPassword": "MineyMouse",
+    "hobbies": "{\n    \"hobbies\": \"Robbing Banks\"\n}{\n    \"hobbies\": \"Smoking a Coffee\"\n}{\n    \"hobbies\": \"Staying Safe\"\n}{\n    \"hobbies\": \"Sending Cakes to Inmates\"\n}{\n    \"hobbies\": \"Sending Cakes to Inmates\"\n}{\n    \"hobbies\": \"Teaching my boys manners\"\n}"
+}
