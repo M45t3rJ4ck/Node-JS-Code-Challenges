@@ -47,7 +47,8 @@ app.post("/signin", urlencodedParser, function(req, res) {
   uuid = uuid.toLowerCase();
   active = uuid;
   activeUser = fs.readFileSync('./lib/' + active + '.json');
-  if (login.firstName === activeUser.firstName && login.lastName === activeUser && login.age === activeUser.age && login.password === activeUser.password) {
+  activejser = JSON.parse(activeUser);
+  if (login.firstName === activejser.firstName && login.lastName === activejser.lastName && login.age === activejser.age && login.password === activejser.password) {
     res.redirect("/profile");
   } else {
     console.log(">>Login Failed due to False Credentials<<");
@@ -66,7 +67,14 @@ app.get("/profile", urlencodedParser, function(req, res) {
 
 app.post('/profile', urlencodedParser, function(req, res) {
   data = req.body;
-  activeUser.hobbies += JSON.stringify(data, null, 4);
+  var uuid = data.firstName[0] + data.age + data.lastName[0];
+  uuid = uuid.toLowerCase();
+  active = uuid;
+  activeUser.firstName = data.firstName;
+  activeUser.lastName = data.lastName;
+  activeUser.age = data.age;
+  activeUser.courses = data.courses;
+  activejser = JSON.stringify(activeUser, null, 4);
   fs.writeFileSync('./lib/' + active + '.json', JSON.stringify(activeUser, null, 4));
   res.render("profile.ejs", {
     user: activeUser

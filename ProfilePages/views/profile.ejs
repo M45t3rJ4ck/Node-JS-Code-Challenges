@@ -17,17 +17,29 @@
       <p>Thank you for keeping in touch with us!</p>
       <p>You're signed in as <%= user.firstName %> <%= user.lastName %> at the tender age of <%= user.age %> years old.</p>
       <p>
-        You're current hobbie list includes: 
-        <span id="hobbies"><%= user.hobbies %></span>
+        You're current courses list includes: 
+        <span id="courses"><%= user.courses %></span>
       </p>
       <p>We will be replying to <%= user.email %> if any need to contact should araise.</p>
       <p>Don't forget to keep your passwords safe.</p>
 
       <form id="profileForm" class="containerForm" method="POST" action="/profile">
 
-        <label for="hobbies">By the way, do you have any hobbies perhaps?</label>
+        <label for="firstName">What is your first name?</label>
         <br/>
-        <input class="formInput" type="text" name="hobbies" />
+        <input class="formInput" type="text" name="firstName" placeholder="First Name"/>
+        <br/>
+        <label for="lastName">What is your last name?</label>
+        <br/>
+        <input class="formInput" type="text" name="lastName" placeholder="Last Name" />
+        <br/>
+        <label for="age">What is your age?</label>
+        <br/>
+        <input class="formInput" type="text" name="age" placeholder="Age" />
+        <br/>
+        <label for="courses">By the way, courses do you have?</label>
+        <br/>
+        <input class="formInput" type="text" name="courses" />
         <br/>
         <input type="submit" class="submitButton" value="submit" />
 
